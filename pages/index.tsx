@@ -1,14 +1,13 @@
 import * as React from 'react';
+import DefaultLayout from '../layouts/default'
+import Counter from '../containers/counter'
 
 const App: React.SFC<{}> = () => {
-  const [count, setCount] = React.useState(0);
-
   return (
-    <div>
-      <h1>Hello React</h1>
-      <p>Your number is { count }</p>
-      <button onClick={() => setCount(count+1)}>increment</button>
-    </div>
+    <DefaultLayout>
+      <h1>Hello This is Home</h1>
+      <Counter />
+    </DefaultLayout>
   )
 }
 
