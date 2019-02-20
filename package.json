@@ -10,6 +10,9 @@
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
+  "jest": {
+    "setupFiles": ["./setupTest.js"]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

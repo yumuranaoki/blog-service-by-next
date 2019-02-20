@@ -1,10 +1,12 @@
 import * as React from 'react';
 import DefaultLayout from '../layouts/default';
+import SignupForm from '../containers/signup/form'
 
 const Signup: React.SFC<{}> = () => {
   return (
     <DefaultLayout>
       <h1>Signup</h1>
+      <SignupForm />
     </DefaultLayout>
   )
 }
