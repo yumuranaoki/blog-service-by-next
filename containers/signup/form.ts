@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
-import { Dispatch, } from 'redux';
+import { Dispatch } from 'redux';
 import { handleSubmit, formActions } from '../../actions/signup/form';
 import SignupForm from '../../components/signup/form';
+import { State } from '../../reducers/signup/form';
 
-const mapDispatchToProps = (dispatch: Dispatch) : typeof formActions => ({
+const mapStateToProps = (state: State) => ({
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) : typeof formActions => ({
   handleSubmit: form => dispatch(handleSubmit(form)),
 })
 
 export default connect(
-  mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(SignupForm);

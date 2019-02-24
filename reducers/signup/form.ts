@@ -1,19 +1,17 @@
 import { Reducer } from 'redux';
-import { handleSubmit } from '../../actions/signup/form';
+import { afterHandleSubmit } from '../../actions/signup/form';
 
-const initialState = {
-  
+const initialState: State = {
 };
 
 export type State = {
-  
 };
 
-export type Action = ReturnType<typeof handleSubmit>
+export type Action = ReturnType<typeof afterHandleSubmit>
 
 const reducer : Reducer<State, Action> = (state=initialState, action) => {
   switch (action.type) {
-    case "HANDLE_SUBMIT":
+    case "AFTER_HANDLE_SUBMIT":
       return state;
     default:
       return state;
