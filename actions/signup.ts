@@ -1,5 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
-import { UserAPI } from '../../api/user';
+import Router from 'next/router'
+import { UserAPI } from '../api/user';
+import { changeLoginState } from './session';
 
 const AFTER_HANDLE_SUBMIT = "AFTER_HANDLE_SUBMIT";
 
@@ -11,9 +13,25 @@ export interface Form {
 }
 
 export const handleSubmit = (form: Form) : ThunkAction<Promise<void>, {}, {}, ReturnType<typeof afterHandleSubmit>> => async (dispatch) => {
-  const res = UserAPI.create(form)
-  console.log(res);
-  dispatch(afterHandleSubmit())
+  let res;
+  try {
+    res = await UserAPI.create(form)
+  } catch (error) {
+    console.log(error);
+    // disptach to display something
+  }
+
+  if (!res.success) {
+    console.log(res.body.message);
+    // disptach to display something
+    return
+  }
+  Router.push({
+    pathname: '/'
+  })
+
+  dispatch(changeLoginState());
+  dispatch(afterHandleSubmit());
 }
 
 export const afterHandleSubmit = () => {

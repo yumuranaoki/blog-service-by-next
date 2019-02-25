@@ -21,7 +21,7 @@ const Button = styled.button`
   color: white;
 `;
 
-const Header: React.SFC<{}> = () => {
+const Header: React.FC<{}> = () => {
   return (
     <div>
       <Links>

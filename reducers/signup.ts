@@ -1,18 +1,18 @@
 import { Reducer } from 'redux';
-import { afterHandleSubmit } from '../../actions/signup/form';
+import { afterHandleSubmit } from '../actions/signup';
 
-const initialState: State = {
+const initialState: SignupState = {
 };
 
-export type State = {
+export type SignupState = {
 };
 
 export type Action = ReturnType<typeof afterHandleSubmit>
 
-const reducer : Reducer<State, Action> = (state=initialState, action) => {
+const reducer : Reducer<SignupState, Action> = (state=initialState, action) => {
   switch (action.type) {
     case "AFTER_HANDLE_SUBMIT":
-      return state;
+      return state
     default:
       return state;
   }

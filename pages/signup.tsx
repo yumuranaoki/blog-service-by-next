@@ -1,8 +1,8 @@
 import * as React from 'react';
 import DefaultLayout from '../layouts/default';
-import SignupForm from '../containers/signup/form'
+import SignupForm from '../containers/signup'
 
-const Signup: React.SFC<{}> = () => {
+const Signup: React.FC<{}> = () => {
   return (
     <DefaultLayout>
       <h1>Signup</h1>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { State } from '../../reducers/signup/form';
-import { formActions } from '../../actions/signup/form'
+import { formActions, Form } from '../../actions/signup'
 
 const Container = styled.section`
   display: flex;
@@ -16,11 +15,18 @@ const Input = styled.input`
   border-radius: 3px; 
 `;
 
-const SignupForm: React.SFC<typeof formActions> = ({ handleSubmit, }) => {
+const SignupForm: React.FC<typeof formActions> = ({ handleSubmit, }) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordConfirmation, setPasswordConfirmation] = React.useState('');
+  const submit = (form: Form) => {
+    handleSubmit(form)
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirmation('');
+  }
 
   return (
     <Container>
@@ -28,7 +34,7 @@ const SignupForm: React.SFC<typeof formActions> = ({ handleSubmit, }) => {
       <Input placeholder="Email" type="email" onChange={(event) => setEmail(event.target.value)} />
       <Input placeholder="Password" type="password" onChange={(event) => setPassword(event.target.value)} />
       <Input placeholder="Password Confirmation" type="password" onChange={(event) => setPasswordConfirmation(event.target.value)} />
-      <button onClick={() => handleSubmit({name, email, password, passwordConfirmation})}>submit</button> 
+      <button onClick={() => submit({name, email, password, passwordConfirmation})}>submit</button> 
     </Container>
   )
 }

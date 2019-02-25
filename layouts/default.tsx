@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Header from '../components/header/index';
 
-const DefaultLayout: React.SFC<{}> = (props) => {
+const DefaultLayout: React.FC<{}> = ({ children, }) => {
   return (
     <div>
       <Header />
-      { props.children }
+      { children }
     </div>
   )
 }

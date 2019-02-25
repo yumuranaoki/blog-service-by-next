@@ -1,26 +1,15 @@
-import { Reducer } from 'redux';
-import { increment, decrement } from '../actions/counter'
+import { combineReducers } from 'redux';
+import signupReducer, { SignupState } from './signup';
+import sessionReducer, { SessionState } from './session';
 
-const initialState: State = {
-  number: 0,
+export interface Reducer {
+  signupReducer: SignupState,
+  sessionReducer: SessionState,
 }
 
-export type State = {
-  number: number
-}
-
-export type Action = ReturnType<typeof increment | typeof decrement>
-
-const reducer: Reducer<State, Action> = (state = initialState, action) => {
-  switch(action.type) {
-    case 'INCREMENT':
-      return { ...state, number: state.number + action.number }
-    case 'DECREMENT':
-      return { ...state, number: state.number - action.number }
-    default:
-      return state;
-  }
-}
+const reducer = combineReducers({
+  signupReducer,
+  sessionReducer,
+})
 
 export default reducer;
-
