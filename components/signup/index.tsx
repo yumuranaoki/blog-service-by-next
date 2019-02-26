@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { formActions, Form } from '../../actions/signup'
+import { Form } from '../../actions/signup'
+import { signupActions } from '../../containers/signup';
 
 const Container = styled.section`
   display: flex;
@@ -15,7 +16,7 @@ const Input = styled.input`
   border-radius: 3px; 
 `;
 
-const SignupForm: React.FC<typeof formActions> = ({ handleSubmit, }) => {
+const SignupForm: React.FC<typeof signupActions> = ({ handleSubmit, }) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');

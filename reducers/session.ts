@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { changeLoginState } from '../actions/session'
 
 const initialState: SessionState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
 }
 
 export type SessionState = {

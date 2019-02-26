@@ -26,6 +26,7 @@ export const handleSubmit = (form: Form) : ThunkAction<Promise<void>, {}, {}, Re
     // disptach to display something
     return
   }
+
   Router.push({
     pathname: '/'
   })
@@ -38,6 +39,4 @@ export const afterHandleSubmit = () => {
   return ({
     type: "AFTER_HANDLE_SUBMIT" as typeof AFTER_HANDLE_SUBMIT,
   });
-}
-
-export const formActions = { handleSubmit };
+};

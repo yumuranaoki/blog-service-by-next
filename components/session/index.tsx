@@ -2,15 +2,16 @@ import * as React from 'react';
 import { SessionState } from '../../reducers/session';
 
 interface Session {
-  LoggedIn: React.FC,
   NotLoggedIn: React.FC,
 }
 
-const Session: React.FC<SessionState & Session> = ({ isLoggedIn ,LoggedIn, NotLoggedIn }) => {
+const Session: React.FC<SessionState & Session> = ({ isLoggedIn, NotLoggedIn, children }) => {
 
   if (isLoggedIn) {
     return (
-      <LoggedIn />
+      <div>
+        { children }
+      </div>
     )
   }
   return <NotLoggedIn />

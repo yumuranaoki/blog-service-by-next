@@ -3,13 +3,12 @@ import { post } from './index';
 
 export class UserAPI {
   static async create(form: Form) {
-    let res;
     try {
-      res = await post('signup', form);
+      const res = await post('signup', form);
+      return res;
     } catch (error) {
       console.log(error);
       return new Error(error);
     }
-    return res;
   }
 }

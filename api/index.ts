@@ -1,5 +1,13 @@
-export const get = () => {
-
+export const get = async (path: string) => {
+  const res = await fetch(`http://localhost:3000/${path}`, {
+    mode: 'cors',
+    method: 'GET',
+    credentials: 'include',
+  });
+  if (!res.ok) {
+    return new Error(`error: ${res.status}`)
+  }
+  return res.json();
 }
 
 export const post = async (path: string, body: any) => {
@@ -12,7 +20,6 @@ export const post = async (path: string, body: any) => {
     }),
     credentials: 'include',
   });
-  console.log(res);
   if (!res.ok) {
     return new Error(`error: ${res.status}`)
   }

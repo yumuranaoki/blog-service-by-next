@@ -1,6 +1,7 @@
 import * as React from 'react';
 import DefaultLayout from '../layouts/default';
 import Session from '../containers/session';
+import Feed from '../containers/feed';
 
 const LoggedIn: React.FC<{}> = () => {
   return (
@@ -17,7 +18,9 @@ const NotLoggedIn: React.FC<{}> = () => {
 const App: React.FC<{}> = () => {
   return (
     <DefaultLayout>
-      <Session LoggedIn={LoggedIn} NotLoggedIn={NotLoggedIn} />
+      <Session NotLoggedIn={NotLoggedIn}>
+        <Feed />
+      </Session>
     </DefaultLayout>
   )
 }
