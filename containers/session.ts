@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import Session from '../components/session/index';
+import Session from '../components/session';
 import { Reducer } from '../reducers/index';
 
 const mapStateToProps = (state: Reducer) => ({

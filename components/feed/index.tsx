@@ -1,27 +1,30 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { PostAPI } from '../../api/post';
 import { feedActions } from '../../containers/feed';
+import { FeedState } from '../../reducers/feed';
+import { PostInList } from '../post/index';
 
-class Feed extends React.Component<typeof feedActions> {
+class Feed extends React.Component<FeedState & typeof feedActions> {
   async componentDidMount() {
-    let res;
-    try {
-      res = await PostAPI.get();
-    } catch (error) {
-      console.log(error)
-    }
-    
-    console.log(res);
-    if (res.code === 401) {
-      this.props.changeLoginState()
-    }
+    this.props.getPosts()
   }
 
   render() {
+    const posts = [];
+    for (let i=0; i < this.props.posts.length; i++) {
+      const {
+        id,
+        title,
+        place,
+        detail,
+      } = this.props.posts[i]
+      posts.push(<PostInList key={i} title={title} place={place} detail={detail} id={id} />)
+    }
+
     return (
       <div>
-        <span>Feed</span>
+        <span>This is Feed</span>
+        { posts }
       </div>
     )
   }

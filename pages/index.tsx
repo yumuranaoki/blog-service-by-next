@@ -2,23 +2,12 @@ import * as React from 'react';
 import DefaultLayout from '../layouts/default';
 import Session from '../containers/session';
 import Feed from '../containers/feed';
-
-const LoggedIn: React.FC<{}> = () => {
-  return (
-    <h1>Hello This is Home</h1>
-  )
-};
-
-const NotLoggedIn: React.FC<{}> = () => {
-  return (
-    <h1>Not Logged In</h1>
-  );
-};
+import Main from '../components/main/index';
 
 const App: React.FC<{}> = () => {
   return (
     <DefaultLayout>
-      <Session NotLoggedIn={NotLoggedIn}>
+      <Session NotLoggedIn={Main}>
         <Feed />
       </Session>
     </DefaultLayout>

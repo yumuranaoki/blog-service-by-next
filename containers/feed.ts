@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { changeLoginState } from '../actions/session';
+import { getPosts } from '../actions/feed';
+import { Reducer } from '../reducers/index';
 import Feed from '../components/feed/index';
 
-export const feedActions = { changeLoginState };
+export const feedActions = { getPosts };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: Reducer) => ({
+  posts: state.feedReducer.posts,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) : typeof feedActions => ({
-  changeLoginState: () => dispatch(changeLoginState()),
+  getPosts: () => dispatch(getPosts())
 })
 
 export default connect(

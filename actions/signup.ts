@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import Router from 'next/router'
 import { UserAPI } from '../api/user';
-import { changeLoginState } from './session';
+import { changeLoginStateToTrue } from './session';
 
 const AFTER_HANDLE_SUBMIT = "AFTER_HANDLE_SUBMIT";
 
@@ -19,6 +19,7 @@ export const handleSubmit = (form: Form) : ThunkAction<Promise<void>, {}, {}, Re
   } catch (error) {
     console.log(error);
     // disptach to display something
+    return
   }
 
   if (!res.success) {
@@ -31,7 +32,7 @@ export const handleSubmit = (form: Form) : ThunkAction<Promise<void>, {}, {}, Re
     pathname: '/'
   })
 
-  dispatch(changeLoginState());
+  dispatch(changeLoginStateToTrue());
   dispatch(afterHandleSubmit());
 }
 
