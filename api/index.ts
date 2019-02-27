@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch';
+
 export const get = async (path: string) => {
   const res = await fetch(`http://localhost:3000/${path}`, {
     mode: 'cors',

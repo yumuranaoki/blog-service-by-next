@@ -4,19 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 8000",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
   "jest": {
-    "setupFiles": ["./setupTest.js"]
+    "setupFiles": [
+      "./setupTest.js"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.16.1",
     "@types/next": "^8.0.1",
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.2",
@@ -24,6 +27,8 @@
     "@types/redux-logger": "^3.0.7",
     "@types/styled-components": "^4.1.10",
     "@zeit/next-typescript": "^1.1.1",
+    "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^8.0.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
