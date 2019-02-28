@@ -4,7 +4,7 @@ import SignupForm from '../containers/signup'
 
 const Signup: React.FC<{}> = () => {
   return (
-    <DefaultLayout>
+    <DefaultLayout logoutButton={false}>
       <h1>Signup</h1>
       <SignupForm />
     </DefaultLayout>

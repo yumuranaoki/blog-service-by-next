@@ -37,10 +37,9 @@ App.getInitialProps = async ({ req }) => {
       res = await PostAPIServer.getAll(cookie);
     }
     
-    console.log(res);
     const posts = res.body.posts
 
-    if (res.code === 401) {
+    if (res.code === 401 || 500) {
       return {
         posts: [],
         isLoggedIn: false,  

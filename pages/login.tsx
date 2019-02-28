@@ -4,7 +4,7 @@ import LoginForm from '../components/login/index';
 
 const Login: React.FC<{}> = () => {
   return (
-    <DefaultLayout>
+    <DefaultLayout logoutButton={false}>
       <h1>Login</h1>
       <LoginForm />
     </DefaultLayout>

@@ -30,7 +30,13 @@ const LoginOrLogout: React.FC<HeaderProps> = ({ logoutButton }) => {
   if (logoutButton) {
     return <LogoutButton />
   } else {
-    return <Li><Link href="/login"><Button>Login</Button></Link></Li>;
+    return (
+      <div>
+        <Li><Link href="/signup"><Button>Signup</Button></Link></Li>
+        <Li><Link href="/login"><Button>Login</Button></Link></Li>
+        <Li><Link href="/login"><Button>Profile</Button></Link></Li>
+      </div>
+    );
   }
 }
 
@@ -39,7 +45,6 @@ const Header: React.FC<HeaderProps> = ({ logoutButton }) => {
     <div>
       <Links>
         <Li><Link href="/"><Button>Home</Button></Link></Li>
-        <Li><Link href="/signup"><Button>Signup</Button></Link></Li>
         <LoginOrLogout logoutButton={logoutButton} />
       </Links>
     </div>

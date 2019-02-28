@@ -4,14 +4,16 @@ import { PostAPIServer } from '../api/fromServer/post'
 import { PostAPI } from '../api/post'
 import { PostProps } from '../reducers/feed';
 
-const Post: React.FC<{post: PostProps}> = ({ post }) => {
+type PostComponentProps = { post: PostProps } & { isLoggedIn: boolean }
+
+const Post: React.FC<PostComponentProps> = ({ post, isLoggedIn }) => {
   const {
     title,
     place,
     detail
   } = post
   return (
-    <DefaultLayout>
+    <DefaultLayout logoutButton={isLoggedIn} >
       <h1>Post</h1>
       <span>{ title }</span>
       <span>{ place }</span>
@@ -22,26 +24,32 @@ const Post: React.FC<{post: PostProps}> = ({ post }) => {
 
 Post.getInitialProps = async ({ query, req }) => {
   try {
+    let res;
     if (process.browser) {
-      const res = await PostAPI.get(query.id)
-      console.log(res);
-      const post = res.body.post;
-      return {
-        post
-      }
+      res = await PostAPI.get(query.id)
     } else {
       const cookie = req.headers.cookie
-      const res = await PostAPIServer.get(query.id, cookie)
-      console.log(res);
-      const post = res.body.post;
-      return {
-        post
-      }
+      res = await PostAPIServer.get(query.id, cookie)
     }
+
+    if (res.code === 401 || 500) {
+      return {
+        post: [],
+        isLoggedIn: false,
+      }  
+    }
+
+    const post = res.body.post;
+    return {
+      post,
+      isLoggedIn: true,
+    }
+
   } catch (error) {
     console.log(error);
     return {
-      post: {}
+      post: {},
+      isLoggedIn: false,
     }
   }
 }
