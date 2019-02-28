@@ -1,17 +1,62 @@
 import * as React from 'react';
 import DefaultLayout from '../layouts/default';
 import Session from '../containers/session';
-import Feed from '../containers/feed';
+import Feed from '../components/feed';
 import Main from '../components/main/index';
+import { PostAPIServer } from '../api/fromServer/post';
+import { PostAPI } from '../api/post';
+import { PostProps } from '../reducers/feed';
 
-const App: React.FC<{}> = () => {
+interface AppProps {
+  posts: PostProps[],
+  isLoggedIn: boolean,
+}
+
+const App: React.FC<AppProps> = ({ posts, isLoggedIn }) => {
+  if (!isLoggedIn) {
+    return (
+      <DefaultLayout>
+        <Main />
+      </DefaultLayout>
+    );
+  }
   return (
     <DefaultLayout>
-      <Session NotLoggedIn={Main}>
-        <Feed />
-      </Session>
+      <Feed posts={posts}/>
     </DefaultLayout>
   )
+}
+
+App.getInitialProps = async ({ req }) => {
+  try {
+    let res;
+    if (process.browser) {
+      res = await PostAPI.getAll();
+    } else {
+      const cookie = req.headers.cookie
+      res = await PostAPIServer.getAll(cookie);
+    }
+    
+    console.log(res);
+    const posts = res.body.posts
+
+    if (res.code === 401) {
+      return {
+        posts: [],
+        isLoggedIn: false,  
+      }  
+    }
+    return {
+      posts,
+      isLoggedIn: true,
+    }
+
+  } catch (error) {
+    return {
+      posts: [],
+      isLoggedIn: false,
+    }
+  }
 }
 
 export default App;
