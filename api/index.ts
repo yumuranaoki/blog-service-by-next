@@ -27,3 +27,17 @@ export const post = async (path: string, body: any) => {
   }
   return res.json();
 }
+
+export const deleteReq = async (path: string) => {
+  const res = await fetch(`http://localhost:3000/${path}`, {
+    mode: 'cors',
+    method: 'DELETE',
+    headers: new Headers({
+    }),
+    credentials: 'include',
+  });
+  if (!res.ok) {
+    return new Error(`error: ${res.status}`)
+  }
+  return res.json();
+}

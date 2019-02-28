@@ -15,13 +15,13 @@ interface AppProps {
 const App: React.FC<AppProps> = ({ posts, isLoggedIn }) => {
   if (!isLoggedIn) {
     return (
-      <DefaultLayout>
+      <DefaultLayout logoutButton={isLoggedIn}>
         <Main />
       </DefaultLayout>
     );
   }
   return (
-    <DefaultLayout>
+    <DefaultLayout logoutButton={isLoggedIn}>
       <Feed posts={posts}/>
     </DefaultLayout>
   )

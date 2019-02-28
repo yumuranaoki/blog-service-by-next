@@ -1,10 +1,14 @@
 import * as React from 'react';
 import Header from '../components/header/index';
 
-const DefaultLayout: React.FC<{}> = ({ children, }) => {
+interface DefaultLayoutProps {
+  logoutButton: boolean
+}
+
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logoutButton}) => {
   return (
     <div>
-      <Header />
+      <Header logoutButton={logoutButton}/>
       { children }
     </div>
   )
