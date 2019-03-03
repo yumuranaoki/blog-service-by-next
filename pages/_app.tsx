@@ -2,6 +2,7 @@ import * as React from 'react';
 import App from 'next/app';
 import { Container } from 'next/app'
 import { Provider } from 'react-redux';
+import { Grommet } from 'grommet';
 import store from '../store/index';
 
 class MyApp extends App {
@@ -10,7 +11,9 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Grommet plain>
+            <Component {...pageProps} />
+          </Grommet>
         </Provider>
       </Container>
     )

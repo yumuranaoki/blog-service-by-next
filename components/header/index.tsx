@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { FaPlus } from 'react-icons/fa'
 import LogoutButton from '../logout/index';
 
 const Links = styled.ul`
@@ -28,14 +29,21 @@ interface HeaderProps {
 
 const LoginOrLogout: React.FC<HeaderProps> = ({ logoutButton }) => {
   if (logoutButton) {
-    return <LogoutButton />
+    return (
+      <Links>
+        <Li><Link href="/"><Button>Home</Button></Link></Li>
+        <Li><Link href="/login"><Button>Profile</Button></Link></Li>
+        <Li><Link href="/add"><Button><FaPlus size={16} color="white" /></Button></Link></Li>
+        <LogoutButton />
+      </Links>
+    )
   } else {
     return (
-      <div>
+      <Links>
         <Li><Link href="/signup"><Button>Signup</Button></Link></Li>
         <Li><Link href="/login"><Button>Login</Button></Link></Li>
-        <Li><Link href="/login"><Button>Profile</Button></Link></Li>
-      </div>
+        <Li><Link href="/add"><FaPlus size={24} color="black" /></Link></Li>
+      </Links>
     );
   }
 }
@@ -43,10 +51,7 @@ const LoginOrLogout: React.FC<HeaderProps> = ({ logoutButton }) => {
 const Header: React.FC<HeaderProps> = ({ logoutButton }) => {
   return (
     <div>
-      <Links>
-        <Li><Link href="/"><Button>Home</Button></Link></Li>
-        <LoginOrLogout logoutButton={logoutButton} />
-      </Links>
+      <LoginOrLogout logoutButton={logoutButton} />
     </div>
   )
 }

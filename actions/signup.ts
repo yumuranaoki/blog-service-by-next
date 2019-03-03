@@ -5,14 +5,14 @@ import { changeLoginStateToTrue } from './session';
 
 const AFTER_HANDLE_SUBMIT = "AFTER_HANDLE_SUBMIT";
 
-export interface Form {
+export interface SignupForm {
   name: string,
   email: string,
   password: string,
   passwordConfirmation: string,
 }
 
-export const handleSubmit = (form: Form) : ThunkAction<Promise<void>, {}, {}, ReturnType<typeof afterHandleSubmit>> => async (dispatch) => {
+export const handleSubmit = (form: SignupForm) : ThunkAction<Promise<void>, {}, {}, ReturnType<typeof afterHandleSubmit>> => async (dispatch) => {
   let res;
   try {
     res = await UserAPI.create(form)
